@@ -43,6 +43,27 @@ namespace HotelAPI.Repository
             }
         }
 
+        public async Task<bool> DeleteRooms(int key)
+        {
+            try
+            {
+                var roomsToRemove = _context.Room.Where(s => s.HotelId == key);
+
+                if (roomsToRemove.Any())
+                {
+                    _context.Room.RemoveRange(roomsToRemove);
+                    await _context.SaveChangesAsync();
+                }
+                if (roomsToRemove != null)
+                    return true;
+                return false;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.ToString());
+            }
+        }
+
         public async Task<Room> Get(int key)
         {
             try

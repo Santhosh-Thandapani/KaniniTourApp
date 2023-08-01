@@ -90,8 +90,7 @@ namespace HotelAPI.Repository
             catch( Exception ex)
             {
                 throw new Exception(ex.ToString());
-            }
-            
+            } 
         }
 
        
