@@ -10,6 +10,7 @@ namespace HotelAPI.Services
         {
             _roomAmenity = roomAmenity;
         }
+
         public async Task<RoomAmenity> AddAmenity(RoomAmenity item)
         {
             var result = await _roomAmenity.Add(item);

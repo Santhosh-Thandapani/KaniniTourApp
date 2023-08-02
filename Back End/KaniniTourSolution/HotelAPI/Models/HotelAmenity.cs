@@ -5,9 +5,8 @@ namespace HotelAPI.Models
     public class HotelAmenity
     {
         public int Id { get; set; }
-
-        [ForeignKey("Hotel")]
         public int HotelId { get; set; }
+        [ForeignKey("HotelId")]
         public Hotel? Hotel { get; set; }
         public string? Amenity { get; set; }
     }

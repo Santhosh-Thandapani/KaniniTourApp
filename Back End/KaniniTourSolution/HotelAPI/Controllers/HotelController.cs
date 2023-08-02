@@ -1,6 +1,7 @@
 ﻿using HotelAPI.Interfaces;
 using HotelAPI.Models;
 using HotelAPI.Models.DTO;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,6 +9,7 @@ namespace HotelAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [EnableCors("AngularCORS")]
     public class HotelController : ControllerBase
     {
         private IHotelService<Hotel, HotelDTO, int> _service;
@@ -53,8 +55,8 @@ namespace HotelAPI.Controllers
             }
         }
 
-        [HttpGet("GetHotel")]
-        [ProducesResponseType(typeof(Hotel), 200)]
+        [HttpPost("GetHotel")]
+        [ProducesResponseType(typeof(HotelDTO), 200)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult<HotelDTO>> GetHotel(InputDTO item)
         {
@@ -96,7 +98,7 @@ namespace HotelAPI.Controllers
         {
             try
             {
-                var hotel = await _service.GetHotel(item.Id);
+                var hotel = await _service.UpdateHotel(item);
                 if (hotel == null)
                     return BadRequest("Unable to fetch Hotel");
                 return Ok(hotel);

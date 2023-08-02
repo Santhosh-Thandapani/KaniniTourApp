@@ -20,7 +20,7 @@ namespace HotelAPI.Services
         public async Task<RoomDTO> AddRoom(RoomDTO item)
         {
             var totalRooms = await _roomRepo.GetRoomsByHotel(item.HotelId);
-            item.RoomId= (totalRooms.Count())+1;
+            item.RoomId= 100+totalRooms.Count()+1;
             var addedRoom = await _roomRepo.Add(item);
             if(item.RoomAmenity!=null)
             {
@@ -35,6 +35,35 @@ namespace HotelAPI.Services
                 return item;
             }
             return null;
+        }
+
+        public async Task<ICollection<RoomDTO>> GetRoomsByHotel(int id)
+        {
+            IList<RoomDTO> list = new List<RoomDTO>();
+            var rooms = await _roomRepo.GetRoomsByHotel(id);
+            foreach(var room in rooms)
+            {
+                RoomDTO tempRoom = new RoomDTO();
+                var allAmenities = await _roomAmenity.GetAll(room.Id);
+                var roomAmenities = allAmenities.Where(s => s.HotelId == id).ToList();
+
+                tempRoom.Id=room.Id;
+                tempRoom.HotelId=room.HotelId;
+                tempRoom.RoomId = room.RoomId;
+                tempRoom.RoomName=room.RoomName;
+                tempRoom.TotalRooms= room.TotalRooms;
+                tempRoom.Size= room.Size;
+                tempRoom.BedType = room.BedType;
+                tempRoom.Type = room.Type;
+                tempRoom.Price = room.Price;
+                tempRoom.RoomAmenity=roomAmenities;
+
+                list.Add(tempRoom); 
+            }
+            if (list.Count > 0)
+                return list;
+            return null;
+
         }
 
         public async Task<RoomDTO> RemoveRoom(int id)

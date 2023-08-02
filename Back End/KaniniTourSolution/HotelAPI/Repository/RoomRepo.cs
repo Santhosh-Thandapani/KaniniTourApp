@@ -114,7 +114,7 @@ namespace HotelAPI.Repository
         {
             try
             {
-                var oldRoom = await _context.Room.FirstOrDefaultAsync(s => s.RoomId == item.Id);
+                var oldRoom = await _context.Room.FirstOrDefaultAsync(s => s.RoomId == item.RoomId);
                 if (oldRoom != null)
                 {
                     oldRoom.RoomName = item.RoomName;

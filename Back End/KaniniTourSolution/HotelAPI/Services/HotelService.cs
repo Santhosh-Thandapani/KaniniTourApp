@@ -31,12 +31,13 @@ namespace HotelAPI.Services
                 var roomList = await _roomRepo.GetRoomsByHotel(addedHotel.Id);
                 var roomCount = roomList.Count();
                 item.RoomId= 100+(++roomCount);
+                item.HotelId = addedHotel.Id;
                 var addedRoom = await _roomRepo.Add(item);
                 foreach(var a in item.RoomAmenity)
                 {
                     RoomAmenity temp = new RoomAmenity();
                     temp.HotelId = addedHotel.Id;
-                    temp.RoomId = addedRoom.Id;
+                    temp.RoomId = addedRoom.RoomId;
                     temp.Amenity = a.Amenity;
                     var addedAmenity =await _roomAmenity.Add(temp);
                 }
@@ -94,16 +95,18 @@ namespace HotelAPI.Services
                     RoomDTO newRoomDTO = new RoomDTO();
                     newRoomDTO.Id = room.Id;
                     newRoomDTO.HotelId= room.Id;
-                    newRoomDTO.RoomId= room.Id;
+                    newRoomDTO.RoomId = room.RoomId;
                     newRoomDTO.TotalRooms= room.TotalRooms;
                     newRoomDTO.Size=room.Size;
                     newRoomDTO.BedType=room.BedType;
                     newRoomDTO.Type=room.Type;
                     newRoomDTO.Price=room.Price;
-                    newRoomDTO.RoomAmenity = await _roomAmenity.GetAll(room.Id);
+                    newRoomDTO.RoomAmenity = await _roomAmenity.GetAll(room.RoomId);
                     listRoom.Add(newRoomDTO);
                 }
                 newHotelDTO.Rooms= listRoom;
+
+                list.Add(newHotelDTO);
             }
             if (list != null)
                 return list;

@@ -5,5 +5,6 @@
         public Task<T> AddRoom(T item);
         public Task<K> UpdateRoom(K item);
         public Task<T> RemoveRoom(S id);
+        public Task<ICollection<T>> GetRoomsByHotel(S id);
     }
 }

@@ -1,9 +1,7 @@
-using HotelAPI.Interfaces;
-using HotelAPI.Models;
-using HotelAPI.Models.Context;
-using HotelAPI.Models.DTO;
-using HotelAPI.Repository;
-using HotelAPI.Services;
+using LocationAPI.Interfaces;
+using LocationAPI.Models;
+using LocationAPI.Repositorys;
+using LocationAPI.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -26,21 +24,14 @@ builder.Services.AddCors(opts =>
     });
 });
 
-builder.Services.AddDbContext<HotelContext>(opts =>
+builder.Services.AddDbContext<DbTourLocationAPIContext>(opts =>
 {
     opts.UseSqlServer(builder.Configuration.GetConnectionString("myConn"));
 });
 
-
-builder.Services.AddScoped<IRepo<Hotel, int>, HotelRepo>();
-builder.Services.AddScoped<IRoomRepo<Room,int>, RoomRepo>();
-builder.Services.AddScoped<IAmenityRepo<HotelAmenity>, HotelAmenityRepo>();
-builder.Services.AddScoped<IAmenityRepo<RoomAmenity>, RoomAmenityRepo>();
-
-builder.Services.AddScoped<IHotelService<Hotel, HotelDTO, int>, HotelService>();
-builder.Services.AddScoped<IRoomService<RoomDTO, Room, int>, RoomService>();
-builder.Services.AddScoped<IAmenityService<HotelAmenity>, HotelAmenityService>();
-builder.Services.AddScoped<IAmenityService<RoomAmenity>, RoomAmenityService>();
+builder.Services.AddScoped<IRepo,LocationRepo>();
+builder.Services.AddScoped<IService, LocationService>();
+builder.Services.AddScoped<IAdapter, AdapterServicecs>();
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
@@ -52,7 +43,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             ValidateIssuer = false,
             ValidateAudience = false
         };
-    });
+});
 
 var app = builder.Build();
 
@@ -65,8 +56,6 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.UseCors("AngularCORS");
-app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
