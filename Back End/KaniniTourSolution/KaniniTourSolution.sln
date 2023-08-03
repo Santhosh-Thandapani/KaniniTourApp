@@ -5,11 +5,15 @@ VisualStudioVersion = 17.5.33530.505
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HotelAPI", "HotelAPI\HotelAPI.csproj", "{F2BA0553-1EF9-4DC7-A8F9-B143011936E4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LocationAPI", "LocationAPI\LocationAPI.csproj", "{8B2D28BF-837B-47FA-8A19-F32C46F2BAAB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LocationAPI", "LocationAPI\LocationAPI.csproj", "{8B2D28BF-837B-47FA-8A19-F32C46F2BAAB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TourPackageAPI", "TourPackageAPI\TourPackageAPI.csproj", "{9A2CC6CF-BC02-40FD-9273-89B12B8D6D4D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TourPackageAPI", "TourPackageAPI\TourPackageAPI.csproj", "{9A2CC6CF-BC02-40FD-9273-89B12B8D6D4D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EndUserAPI", "EndUserAPI\EndUserAPI.csproj", "{82BB93AA-27C3-499E-BD55-29B1D037732C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EndUserAPI", "EndUserAPI\EndUserAPI.csproj", "{82BB93AA-27C3-499E-BD55-29B1D037732C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FeedBackAPI", "FeedBackAPI\FeedBackAPI.csproj", "{EA656797-06E7-4A20-88B8-C75696443B2A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookingAPI", "BookingAPI\BookingAPI.csproj", "{53B00D95-9501-4792-9CCC-53D052853F08}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +37,14 @@ Global
 		{82BB93AA-27C3-499E-BD55-29B1D037732C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{82BB93AA-27C3-499E-BD55-29B1D037732C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{82BB93AA-27C3-499E-BD55-29B1D037732C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EA656797-06E7-4A20-88B8-C75696443B2A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EA656797-06E7-4A20-88B8-C75696443B2A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EA656797-06E7-4A20-88B8-C75696443B2A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EA656797-06E7-4A20-88B8-C75696443B2A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{53B00D95-9501-4792-9CCC-53D052853F08}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{53B00D95-9501-4792-9CCC-53D052853F08}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{53B00D95-9501-4792-9CCC-53D052853F08}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{53B00D95-9501-4792-9CCC-53D052853F08}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
