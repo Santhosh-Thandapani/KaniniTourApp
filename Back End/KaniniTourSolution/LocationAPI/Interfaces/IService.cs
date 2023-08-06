@@ -7,7 +7,6 @@ namespace LocationAPI.Interfaces
     {
         public Task<ICollection<LocationDTO>> GetAllCities();
         public Task<ICollection<LocationDTO>> GetCities();
-       
-
+        public Task<LocationDTO> GetCityById(int id);
     }
 }

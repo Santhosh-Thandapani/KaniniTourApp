@@ -36,9 +36,9 @@ namespace FeedBackAPI.Controllers
         }
 
         [HttpPost("Get OverAll HotellFeedback")]
-        [ProducesResponseType(typeof(HotelFeedback), 200)]
+        [ProducesResponseType(typeof(HotelDTO), 200)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult<HotelFeedback>> GetOverall(InputDTO item)
+        public async Task<ActionResult<HotelDTO>> GetOverall(InputDTO item)
         {
             try
             {

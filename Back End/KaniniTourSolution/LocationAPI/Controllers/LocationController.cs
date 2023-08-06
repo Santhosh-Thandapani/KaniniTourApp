@@ -1,6 +1,7 @@
 ﻿using LocationAPI.Interfaces;
 using LocationAPI.Models;
 using LocationAPI.Models.DTOs;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,6 +9,7 @@ namespace LocationAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [EnableCors("AngularCORS")]
     public class LocationController : ControllerBase
     {
         private readonly IService _service;
@@ -43,6 +45,25 @@ namespace LocationAPI.Controllers
             try
             {
                 var locations = await _service.GetCities();
+                if (locations == null)
+                    return BadRequest("Unable to fetch locations");
+                return Ok(locations);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+
+        [HttpPost("GetOne")]
+        [ProducesResponseType(typeof(LocationDTO), 200)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<ICollection<LocationDTO>>> GetCity(InputDTO item)
+        {
+            try
+            {
+                var locations = await _service.GetCityById(item.id);
                 if (locations == null)
                     return BadRequest("Unable to fetch locations");
                 return Ok(locations);

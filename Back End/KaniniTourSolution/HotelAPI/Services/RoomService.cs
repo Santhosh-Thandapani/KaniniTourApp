@@ -44,7 +44,7 @@ namespace HotelAPI.Services
             foreach(var room in rooms)
             {
                 RoomDTO tempRoom = new RoomDTO();
-                var allAmenities = await _roomAmenity.GetAll(room.Id);
+                var allAmenities = await _roomAmenity.GetAll(room.RoomId);
                 var roomAmenities = allAmenities.Where(s => s.HotelId == id).ToList();
 
                 tempRoom.Id=room.Id;

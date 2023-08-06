@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using TourPackageAPI.Interfaces;
 using TourPackageAPI.Models;
@@ -8,6 +9,7 @@ namespace TourPackageAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [EnableCors("AngularCORS")]
     public class PackageController : ControllerBase
     {
         private readonly IService<PackageDTO, int, Package> _service;

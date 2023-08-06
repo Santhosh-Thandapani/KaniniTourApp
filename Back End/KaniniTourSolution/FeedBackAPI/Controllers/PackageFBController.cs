@@ -37,9 +37,9 @@ namespace FeedBackAPI.Controllers
         }
 
         [HttpPost("Get OverAll PackageFeedback")]
-        [ProducesResponseType(typeof(PackageFeedback), 200)]
+        [ProducesResponseType(typeof(PackageDTO), 200)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult<PackageFeedback>> GetOverall(InputDTO item)
+        public async Task<ActionResult<PackageDTO>> GetOverall(InputDTO item)
         {
             try
             {

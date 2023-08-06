@@ -42,7 +42,7 @@ namespace TourPackageAPI.Repositorys
         public async Task<ICollection<Itinerary>> GetAllByPackage(int id)
         {
             var itineraries = await _context.Itineraries.Where(s => s.PackageId == id).ToListAsync();
-            if (itineraries.Count > 1)
+            if (itineraries.Count >=1)
                 return itineraries;
             return null;
         }

@@ -42,7 +42,7 @@ namespace EndUserAPI.Controllers
             return BadRequest("Please Check Credentials");
         }
 
-        [HttpPost("DoctorRegister")]
+        [HttpPost("TourAgent Register")]
         [ProducesResponseType(typeof(UserDTO), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult<UserDTO>> TourAgentRegister(TourAgentDTO agent)
@@ -62,7 +62,7 @@ namespace EndUserAPI.Controllers
             return BadRequest("Unable to register at this moment");
         }
 
-        [HttpPost("PatientRegister")]
+        [HttpPost("Passenger Register")]
         [ProducesResponseType(typeof(UserDTO), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult<UserDTO>> PatientRegister(PassengerDTO pass)
@@ -102,7 +102,7 @@ namespace EndUserAPI.Controllers
             return BadRequest("Unable to update status at this moment");
         }
 
-        [HttpPut("Update Password ")]
+        [HttpPut("Update Password")]
         [ProducesResponseType(typeof(UserDTO), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult<UserDTO>> UpdatePassword(InputDTO input)

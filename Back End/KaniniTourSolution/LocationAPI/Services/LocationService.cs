@@ -37,5 +37,13 @@ namespace LocationAPI.Services
             return null;
         }
 
+        public async Task<LocationDTO> GetCityById(int id)
+        {
+            var cities = await GetCities();
+            var city = cities.Where(s=>s.cityId== id).FirstOrDefault();
+            if(city!= null) 
+                return city;
+            return null;
+        }
     }
 }
