@@ -1,0 +1,54 @@
+/* Sample.css */
+
+/* Style for the whole Navbar */
+.vendorNavbar { /* Change to your desired background color */
+    padding: 10px;
+  }
+  
+  /* Style for the Navbar container */
+  .navBar {
+    max-width: 1200px; /* Set your preferred width */
+    margin: 0 auto;
+  }
+  
+  /* Custom styles for the Navbar links */
+  .custom-navbar .navbar-brand {
+    color: #751212; /* Change to your desired text color */
+    font-size: 24px; /* Adjust the font size as needed */
+  }
+  
+  .custom-navbar .nav-link {
+    color: #4642a2; /* Change to your desired text color */
+    font-size: 18px; /* Adjust the font size as needed */
+    margin-left: 20px; /* Add some space between the links */
+  }
+  
+  .custom-navbar .nav-link:hover {
+    color: #f00; /* Change to your desired text color on hover */
+  }
+  
+  /* Custom style for the heading next to the Navbar */
+  .navbar-heading {
+    color: #fff; /* Change to your desired text color */
+    font-size: 36px; /* Adjust the font size as needed */
+    margin: 20px 0; /* Add some margin for better spacing */
+  }
+
+  .carousel {
+    max-height: 400px; /* Adjust the height as needed */
+  }
+  
+  /* Center the Carousel items within the container */
+  .carousel-inner {
+    display: flex;
+    align-items: center;
+  }
+  
+  /* Adjust the size of the Carousel images */
+  .carousel-item img {
+    max-height: 300px; /* Adjust the height of the images as needed */
+    object-fit: cover; /* Keep the aspect ratio and cover the available space */
+  }
+  
+
+  

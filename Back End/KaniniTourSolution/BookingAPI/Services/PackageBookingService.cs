@@ -33,6 +33,21 @@ namespace BookingAPI.Services
             return booking;
         }
 
+        public async Task<InputDTO> CheckAvailable(CheckDTO item)
+        {
+            var packageBook = await _packageBookRepo.GetAll();
+            var packBook = packageBook.SingleOrDefault(s => s.PackgeId == item.PackageId && s.CheckIn == item.CheckInDate);
+            var allguestBook = await _packageGuestRepo.GetAll();
+            int count = allguestBook.Where(s => s.BookingId == packBook.BookingId).Count();
+            if (count > 0)
+            {
+                InputDTO inputDTO = new InputDTO();
+                inputDTO.Id = count;
+                return inputDTO;
+            }
+            return null;
+        }
+
         public async Task<ICollection<PackageBookDTO>> GetAllBooking()
         {
             List<PackageBookDTO> list = new List<PackageBookDTO>();
@@ -42,6 +57,8 @@ namespace BookingAPI.Services
                 PackageBookDTO getBook = new PackageBookDTO();
                 getBook.BookingId = hotelBook.BookingId;
                 getBook.PackgeId = hotelBook.PackgeId;
+                getBook.PackageName=hotelBook.PackageName;
+                getBook.Price=hotelBook.Price;
                 getBook.UserId = hotelBook.UserId;
                 getBook.UserName = hotelBook.UserName;
                 getBook.BookingAt = hotelBook.BookingAt;
@@ -69,6 +86,8 @@ namespace BookingAPI.Services
                 getBook.BookingId = hotelBook.BookingId;
                 getBook.PackgeId = hotelBook.PackgeId;
                 getBook.UserId = hotelBook.UserId;
+                getBook.PackageName = hotelBook.PackageName;
+                getBook.Price = hotelBook.Price;
                 getBook.UserName = hotelBook.UserName;
                 getBook.BookingAt = hotelBook.BookingAt;
                 getBook.CheckOut = hotelBook.CheckOut;

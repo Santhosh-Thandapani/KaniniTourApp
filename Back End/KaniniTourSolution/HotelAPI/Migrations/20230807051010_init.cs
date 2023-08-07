@@ -15,10 +15,11 @@ namespace HotelAPI.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Picture = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     HouseNo = table.Column<int>(type: "int", nullable: false),
                     Street = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Landmark = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CityId = table.Column<int>(type: "int", nullable: false)
+                    City = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -46,26 +47,6 @@ namespace HotelAPI.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "HotelPicture",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    HotelId = table.Column<int>(type: "int", nullable: false),
-                    Path = table.Column<string>(type: "nvarchar(max)", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_HotelPicture", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_HotelPicture_Hotel_HotelId",
-                        column: x => x.HotelId,
-                        principalTable: "Hotel",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Room",
                 columns: table => new
                 {
@@ -74,6 +55,7 @@ namespace HotelAPI.Migrations
                     HotelId = table.Column<int>(type: "int", nullable: false),
                     RoomId = table.Column<int>(type: "int", nullable: false),
                     RoomName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    RoomPicture = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     TotalRooms = table.Column<int>(type: "int", nullable: false),
                     Size = table.Column<int>(type: "int", nullable: false),
                     BedType = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -118,11 +100,6 @@ namespace HotelAPI.Migrations
                 column: "HotelId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_HotelPicture_HotelId",
-                table: "HotelPicture",
-                column: "HotelId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Room_HotelId",
                 table: "Room",
                 column: "HotelId");
@@ -137,9 +114,6 @@ namespace HotelAPI.Migrations
         {
             migrationBuilder.DropTable(
                 name: "HotelAmenity");
-
-            migrationBuilder.DropTable(
-                name: "HotelPicture");
 
             migrationBuilder.DropTable(
                 name: "Room");

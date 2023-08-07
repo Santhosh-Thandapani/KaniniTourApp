@@ -1,0 +1,18 @@
+.custom-navbar {
+    top: 10px;
+    margin-bottom: 20px; 
+    border-bottom: 5px solid #3fbbc0;
+  }
+  
+  .custom-navbar .navbar-nav .nav-link {
+    font-size: 14px; 
+    font-weight: bold;
+  }
+  
+  .custom-navbar .navbar-brand {
+    font-size: 20px; 
+    font-weight: bold; 
+  }
+  .top-left-search  .top-left-logout{
+    padding-right: 3%;
+  }

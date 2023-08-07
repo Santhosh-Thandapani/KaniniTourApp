@@ -14,6 +14,6 @@ namespace TourPackageAPI.Models
         public string? ActivityName { get; set; }
         public string? Picture { get; set; }
         public string? Spot { get; set; }
-        public int CityId { get; set; }
+        public string? City { get; set; }
     }
 }

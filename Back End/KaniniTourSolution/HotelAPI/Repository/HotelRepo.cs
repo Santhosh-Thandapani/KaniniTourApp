@@ -50,7 +50,7 @@ namespace HotelAPI.Repository
                     oldHotel.Name = item.Name;
                     oldHotel.Street = item.Street;
                     oldHotel.Landmark = item.Landmark;
-                    oldHotel.CityId = item.CityId;
+                    oldHotel.City = item.City;
                     oldHotel.HouseNo = item.HouseNo;
                     await _context.SaveChangesAsync();
                     return item;

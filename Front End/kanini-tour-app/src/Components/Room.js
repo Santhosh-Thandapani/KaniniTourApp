@@ -2,14 +2,53 @@ import { useParams} from "react-router-dom";
 import { useEffect, useState } from "react";
 import './Room.css';
 import tour from './Assets/tour.jpg';
+import BookingModal from "./BookingModal";
 
 function Room() {
   const { id } = useParams(); 
   const[hotel,setHotel]=useState({});
-  const [requestBody, setSequestBody] = useState({
-    "id": id
+
+  const [requestBody, setRequestBody] = useState({
+    "id": id,
+    "roomId":0
   });
+
+  //bookingDTO
+  const[bookingDTO,setBookingDTO]=useState({
+    hotelId:id,
+    hotelName:"",
+    roomId:0
+  })
+
+  
+
+  
   const [rooms, setRooms] = useState([])
+
+  //Booking Popup:
+  const [bookingPopup, setBookingPopup] = useState(false);
+
+   const handleOpen = (getRoomId) => {
+    setRequestBody((prevRequestBody) => ({
+      ...prevRequestBody,
+      roomId: getRoomId
+    }));
+
+    const hotelName = hotel.name;
+    setBookingDTO((prevBookingDTO) => ({
+      ...prevBookingDTO,
+      hotelId: id,
+      hotelName: hotelName,
+      roomId: getRoomId,
+    }));
+    // Show the booking popup
+     setBookingPopup(true);
+  };
+
+  const handleClose = () => {
+    setBookingPopup(false);
+  };
+
 
   const fetchHoteById = () => {
     fetch("https://localhost:7001/api/Hotel/GetHotel", {
@@ -23,10 +62,13 @@ function Room() {
         .then(response => response.json())
         .then(data => {
           setHotel(data);
-            console.log(data);
+          setBookingDTO(prevBookingDTO => ({
+            ...prevBookingDTO,
+            hotelName: data.name
+          }));
         })
         .catch(error => console.log(error));
-}
+     }
 
  const fetchRooms = () => {
         fetch("https://localhost:7001/api/Room/GetRooms", {
@@ -40,7 +82,6 @@ function Room() {
             .then(response => response.json())
             .then(data => {
               setRooms(data);
-                console.log(data);
             })
             .catch(error => console.log(error));
     }
@@ -105,9 +146,6 @@ function Room() {
                     ) : (
                       <p>Loading amenities...</p>
                     )}
-
-                    
-
                   </div>
                 </div>
 
@@ -115,7 +153,8 @@ function Room() {
                   <div class="card-body">
                     <p>Type: {room.type}</p>
                     <h6>Price: {room.price}</h6>
-                    <a href="#!" class="btn btn-primary">Button</a>
+                   <button className="btn btn-primary" onClick={() => handleOpen(room.id)}>Book</button>
+
                   </div>
                 </div>
 
@@ -126,6 +165,9 @@ function Room() {
           </div>
             
         </div>
+        {/* {bookingPopup && <BookingModal closeModal={handleClose }/> } */}
+        {bookingPopup && <BookingModal closeModal={handleClose} bookingDTO={bookingDTO} />}
+
       </div>
   </div>
    

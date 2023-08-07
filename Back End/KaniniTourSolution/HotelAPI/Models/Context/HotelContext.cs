@@ -11,7 +11,6 @@ namespace HotelAPI.Models.Context
         }
         public DbSet<Hotel> Hotel { get; set; }
         public DbSet<HotelAmenity> HotelAmenity { get; set; }
-        public DbSet<HotelPicture> HotelPicture { get; set; }
         public DbSet<Room> Room { get; set; }
         public DbSet<RoomAmenity> RoomAmenity { get; set; }
 

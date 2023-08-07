@@ -41,17 +41,3 @@
     border-radius: 50%;
   }
   
-
-
-/* 
-  {Array.isArray(room.roomAmenity) ? (
-                      <ul>
-                        {hotel.hotelAmenities.map((amt) => (
-                          <li key={amt.id}>{amt.amenity}</li>
-                        ))}
-                      </ul>
-                    ) : (
-                      <p>Loading amenities...</p>
-                    )}
-                     */
-  

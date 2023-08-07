@@ -32,9 +32,9 @@ namespace EndUserAPI.Services
 
         public async Task<UserDTO> Login(UserDTO userDTO)
         {
-            if (userDTO.UserId != null && userDTO.Password != null)
+            if (userDTO.PhoneNumber != null && userDTO.Password != null)
             {
-                var doctorData = await _repo.GetById(userDTO.UserId);
+                var doctorData = await _repo.GetByPhoneNo(userDTO.PhoneNumber);
                 if (doctorData != null)
                 {
                     if (doctorData.PasswordKey != null && doctorData.PasswordHash != null)
@@ -132,18 +132,31 @@ namespace EndUserAPI.Services
         public async Task<UserDTO> UpdateStatus(InputDTO inUser)
         {
             var user = await _repo.GetById(inUser.Id);
-            user.Status = "Approved";
-            var result = await _repo.Update(user);
-            UserDTO userDTO = new();
-            if (result != null)
-            {
-                userDTO.UserId = result.UserId;
-                userDTO.Role = result.Role;
-                userDTO.Status = result.Status;
-                userDTO.Token = _tokenService.GenerateToken(userDTO);
-                return userDTO;
+            if (user != null){
+                user.Status = "Approved";
+                var result = await _repo.Update(user);
+                UserDTO userDTO = new();
+                if (result != null)
+                {
+                    userDTO.UserId = result.UserId;
+                    userDTO.Role = result.Role;
+                    userDTO.Status = result.Status;
+                    userDTO.Token = _tokenService.GenerateToken(userDTO);
+                    return userDTO;
+                }
             }
             return null;
+        }
+
+        public async Task<bool> DeclineStatus(InputDTO inUser)
+        {
+            var agent = await _agent.Delete(inUser.Id);
+            var user = await _repo.Delete(inUser.Id);
+            if (user != null && agent!=null)
+            {
+                return true;
+            }
+            return false;
         }
 
 
@@ -200,5 +213,20 @@ namespace EndUserAPI.Services
             return null;
         }
 
+        public async Task<Passenger> GetPassengerProfile(int id)
+        {
+            var profile = await _pass.GetById(id);
+            if(profile != null)
+                return profile;
+            return null;
+        }
+
+        public async Task<TourAgent> GetTourAgentProfile(int id)
+        {
+            var profile = await _agent.GetById(id);
+            if(profile != null) 
+                return profile;
+            return null;
+        }
     }
 }

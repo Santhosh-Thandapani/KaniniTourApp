@@ -2,6 +2,7 @@
 using EndUserAPI.Models;
 using EndUserAPI.Models.DTOs;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Data;
@@ -12,13 +13,16 @@ namespace EndUserAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [EnableCors("AngularCORS")]
     public class EndUserController : ControllerBase
     {
         private readonly IService _service;
+        private readonly ITwoFactorService _factor;
 
-        public EndUserController(IService service)
+        public EndUserController(IService service , ITwoFactorService factor)
         {
             _service=service;
+            _factor=factor;
         }
 
         [HttpPost("Login")]
@@ -50,7 +54,8 @@ namespace EndUserAPI.Controllers
             try
             {
                 var result = await _service.TourAgentRegister(agent);
-                if (result != null)
+                var factor = await _factor.AddTwoFactor(result.UserId);
+                if (result != null && factor !=null)
                 {
                     return Ok(result);
                 }
@@ -65,14 +70,56 @@ namespace EndUserAPI.Controllers
         [HttpPost("Passenger Register")]
         [ProducesResponseType(typeof(UserDTO), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult<UserDTO>> PatientRegister(PassengerDTO pass)
+        public async Task<ActionResult<UserDTO>> PassengerRegister(PassengerDTO pass)
         {
             try
             {
                 var result = await _service.PassRegister(pass);
-                if (result != null)
+                var factor = await _factor.AddTwoFactor(result.UserId);
+                if (result != null && factor != null)
                 {
                     return Ok(result);
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex);
+            }
+            return BadRequest("Unable to register at this moment");
+        }
+
+        [HttpPost("Check Two Factor")]
+        [ProducesResponseType(typeof(UserTwoFactor), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<ICollection<UserTwoFactor>>> CheckTwoFactor( TwoFactorDTO factor)
+        {
+            try
+            {
+                var resultFactor = await _factor.GetFactor(factor);
+                if (resultFactor != null)
+                {
+                    return Ok(resultFactor);
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex);
+            }
+            return BadRequest("Unable to register at this moment");
+        }
+
+
+        [HttpPost("Show User TwoFactor")]
+        [ProducesResponseType(typeof(UserTwoFactor), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<ICollection<UserTwoFactor>>> ShowTwoFactor(InputDTO item)
+        {
+            try
+            {
+                var resultFactor = await _factor.GetAllFactor(item.Id);
+                if (resultFactor != null )
+                {
+                    return Ok(resultFactor);
                 }
             }
             catch (Exception ex)
@@ -91,6 +138,28 @@ namespace EndUserAPI.Controllers
             {
                 var result = await _service.UpdateStatus(input);
                 if (result != null)
+                {
+                    return Ok(result);
+                }
+            }
+            catch (Exception up)
+            {
+                Debug.WriteLine(up);
+            }
+            return BadRequest("Unable to update status at this moment");
+        }
+
+
+
+        [HttpPut("Decline Agent")]
+        [ProducesResponseType(typeof(bool), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<bool>> DeclineAgent(InputDTO input)
+        {
+            try
+            {
+                var result = await _service.DeclineStatus(input);
+                if (result ==true)
                 {
                     return Ok(result);
                 }
@@ -202,6 +271,47 @@ namespace EndUserAPI.Controllers
                 Debug.WriteLine(nefe);
             }
             return NotFound("Unable to update status at this moment");
+        }
+
+
+        [HttpPost("Passenger Profile")]
+        [ProducesResponseType(typeof(Passenger), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<Passenger>> PassengerProfile(InputDTO item)
+        {
+            try
+            {
+                var result = await _service.GetPassengerProfile(item.Id);
+                if (result != null)
+                {
+                    return Ok(result);
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex);
+            }
+            return BadRequest("Unable to register at this moment");
+        }
+
+        [HttpPost("Agent Profile")]
+        [ProducesResponseType(typeof(TourAgent), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<TourAgent>> AgentProfile(InputDTO item)
+        {
+            try
+            {
+                var result = await _service.GetTourAgentProfile(item.Id);
+                if (result != null)
+                {
+                    return Ok(result);
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex);
+            }
+            return BadRequest("Unable to register at this moment");
         }
 
 

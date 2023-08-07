@@ -7,8 +7,10 @@ namespace BookingAPI.Models
         [Key]
         public int BookingId { get; set; }
         public int PackgeId { get; set; }
+        public string? PackageName { get; set; }
         public int UserId { get; set; }
         public string? UserName { get; set; }
+        public float Price { get; set; }
         public DateTime BookingAt { get; set; }
         public DateTime CheckIn { get; set; }
         public DateTime CheckOut { get; set; }

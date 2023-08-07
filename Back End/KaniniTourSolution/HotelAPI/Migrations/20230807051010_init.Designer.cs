@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HotelAPI.Migrations
 {
     [DbContext(typeof(HotelContext))]
-    [Migration("20230805043639_init")]
+    [Migration("20230807051010_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -31,8 +31,8 @@ namespace HotelAPI.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("CityId")
-                        .HasColumnType("int");
+                    b.Property<string>("City")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("HouseNo")
                         .HasColumnType("int");
@@ -41,6 +41,9 @@ namespace HotelAPI.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Picture")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Street")
@@ -72,27 +75,6 @@ namespace HotelAPI.Migrations
                     b.ToTable("HotelAmenity");
                 });
 
-            modelBuilder.Entity("HotelAPI.Models.HotelPicture", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<int>("HotelId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Path")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("HotelId");
-
-                    b.ToTable("HotelPicture");
-                });
-
             modelBuilder.Entity("HotelAPI.Models.Room", b =>
                 {
                     b.Property<int>("Id")
@@ -114,6 +96,9 @@ namespace HotelAPI.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("RoomName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("RoomPicture")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Size")
@@ -157,17 +142,6 @@ namespace HotelAPI.Migrations
                 });
 
             modelBuilder.Entity("HotelAPI.Models.HotelAmenity", b =>
-                {
-                    b.HasOne("HotelAPI.Models.Hotel", "Hotel")
-                        .WithMany()
-                        .HasForeignKey("HotelId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Hotel");
-                });
-
-            modelBuilder.Entity("HotelAPI.Models.HotelPicture", b =>
                 {
                     b.HasOne("HotelAPI.Models.Hotel", "Hotel")
                         .WithMany()

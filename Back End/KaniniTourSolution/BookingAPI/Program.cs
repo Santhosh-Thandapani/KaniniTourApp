@@ -48,6 +48,8 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseCors("AngularCORS");
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();

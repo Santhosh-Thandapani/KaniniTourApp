@@ -10,9 +10,10 @@ namespace TourPackageAPI.Models
         public int DaysCount { get; set; }
         public int NightsCount { get; set; }
         public int MaxLimit { get; set; }
-        public int CityId { get; set; }
-        public int StateId { get; set; }
-        public int CountryId { get; set; }
+        public string? Picture { get; set; }
+        public string? City { get; set; }
+        public string? State { get; set; }
+        public string? Country { get; set; }
         public string?  HotelStayStatus { get; set; }
         public string? Editable { get; set; }
     }

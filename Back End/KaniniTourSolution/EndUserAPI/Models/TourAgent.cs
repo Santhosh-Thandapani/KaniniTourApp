@@ -5,6 +5,8 @@ namespace EndUserAPI.Models
 {
     public class TourAgent
     {
+        [Key]
+        public int Id { get; set; }
         public int TourAgentId { get; set; }
         [ForeignKey("TourAgentId")]
         public User? User { get; set; }

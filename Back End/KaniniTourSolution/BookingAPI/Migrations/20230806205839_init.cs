@@ -16,8 +16,10 @@ namespace BookingAPI.Migrations
                     StayId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     HotelId = table.Column<int>(type: "int", nullable: false),
+                    HotelName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     RoomId = table.Column<int>(type: "int", nullable: false),
                     UserId = table.Column<int>(type: "int", nullable: false),
+                    Price = table.Column<float>(type: "real", nullable: false),
                     UserName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     BookingAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     CheckIn = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -35,8 +37,10 @@ namespace BookingAPI.Migrations
                     BookingId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     PackgeId = table.Column<int>(type: "int", nullable: false),
+                    PackageName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     UserId = table.Column<int>(type: "int", nullable: false),
                     UserName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Price = table.Column<float>(type: "real", nullable: false),
                     BookingAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     CheckIn = table.Column<DateTime>(type: "datetime2", nullable: false),
                     CheckOut = table.Column<DateTime>(type: "datetime2", nullable: false)

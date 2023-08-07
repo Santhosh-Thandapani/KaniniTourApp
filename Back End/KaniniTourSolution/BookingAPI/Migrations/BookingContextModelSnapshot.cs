@@ -42,6 +42,12 @@ namespace BookingAPI.Migrations
                     b.Property<int>("HotelId")
                         .HasColumnType("int");
 
+                    b.Property<string>("HotelName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<float>("Price")
+                        .HasColumnType("real");
+
                     b.Property<int>("RoomId")
                         .HasColumnType("int");
 
@@ -100,8 +106,14 @@ namespace BookingAPI.Migrations
                     b.Property<DateTime>("CheckOut")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("PackageName")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("PackgeId")
                         .HasColumnType("int");
+
+                    b.Property<float>("Price")
+                        .HasColumnType("real");
 
                     b.Property<int>("UserId")
                         .HasColumnType("int");

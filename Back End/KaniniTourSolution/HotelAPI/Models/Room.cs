@@ -12,6 +12,7 @@ namespace HotelAPI.Models
         public Hotel? Hotel { get; set; }
         public int RoomId { get; set; }
         public string? RoomName { get; set; }
+        public string? RoomPicture { get; set; }
         public int TotalRooms { get; set; }
         public int Size { get; set; }
         public string? BedType { get; set; }

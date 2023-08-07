@@ -31,6 +31,11 @@ namespace BookingAPI.Services
             return booking;
         }
 
+        public Task<InputDTO> CheckAvailable(CheckDTO item)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task<ICollection<HotelBookDTO>> GetAllBooking()
         {
             List<HotelBookDTO> list = new List<HotelBookDTO>(); 
@@ -40,8 +45,10 @@ namespace BookingAPI.Services
                 HotelBookDTO getBook = new HotelBookDTO();    
                 getBook.StayId= hotelBook.StayId;
                 getBook.HotelId= hotelBook.HotelId;
+                getBook.HotelName=hotelBook.HotelName;
                 getBook.RoomId= hotelBook.RoomId;
                 getBook.UserId= hotelBook.UserId;
+                getBook.Price=hotelBook.Price;
                 getBook.UserName=hotelBook.UserName;
                 getBook.BookingAt= hotelBook.BookingAt;
                 getBook.CheckOut= hotelBook.CheckOut;
@@ -67,6 +74,8 @@ namespace BookingAPI.Services
                 HotelBookDTO getBook = new HotelBookDTO();
                 getBook.StayId = hotelBook.StayId;
                 getBook.HotelId = hotelBook.HotelId;
+                getBook.HotelName = hotelBook.HotelName;
+                getBook.Price = hotelBook.Price;
                 getBook.RoomId = hotelBook.RoomId;
                 getBook.UserId = hotelBook.UserId;
                 getBook.UserName = hotelBook.UserName;

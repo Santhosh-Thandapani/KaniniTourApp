@@ -11,5 +11,6 @@ namespace EndUserAPI.Models.Context
         public DbSet<User> Users { get; set; }
         public DbSet<Passenger> Passengers{ get; set; }
         public DbSet<TourAgent>TourAgents { get; set; }
+        public DbSet<UserTwoFactor> UserTwoFactors { get; set;}
     }
 }

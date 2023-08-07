@@ -18,9 +18,10 @@ namespace TourPackageAPI.Migrations
                     DaysCount = table.Column<int>(type: "int", nullable: false),
                     NightsCount = table.Column<int>(type: "int", nullable: false),
                     MaxLimit = table.Column<int>(type: "int", nullable: false),
-                    CityId = table.Column<int>(type: "int", nullable: false),
-                    StateId = table.Column<int>(type: "int", nullable: false),
-                    CountryId = table.Column<int>(type: "int", nullable: false),
+                    Picture = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    City = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    State = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Country = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     HotelStayStatus = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Editable = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
@@ -62,7 +63,7 @@ namespace TourPackageAPI.Migrations
                     ActivityName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Picture = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Spot = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CityId = table.Column<int>(type: "int", nullable: false)
+                    City = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {

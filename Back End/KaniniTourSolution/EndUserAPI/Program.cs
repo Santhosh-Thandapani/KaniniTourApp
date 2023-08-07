@@ -30,8 +30,10 @@ builder.Services.AddDbContext<UserContext>(opts =>
 builder.Services.AddScoped<IRepo<User>,UserRepo>();
 builder.Services.AddScoped<IBaseRepo<TourAgent>, TourAgentRepo>();
 builder.Services.AddScoped<IBaseRepo<Passenger>, PassengerRepo>();
+builder.Services.AddScoped<IBaseRepo<UserTwoFactor>,TwoFactorRepo>();
 
 builder.Services.AddScoped<IService, ManageService>();
+builder.Services.AddScoped<ITwoFactorService, TwoFactorService>();
 builder.Services.AddScoped<IGenerateToken, GenerateTokenService>();
 builder.Services.AddScoped<IAdapterService, AdapterService>();
 
@@ -46,6 +48,8 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseCors("AngularCORS");
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();

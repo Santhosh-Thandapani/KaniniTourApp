@@ -1,5 +1,6 @@
 ﻿using BookingAPI.Interfaces;
 using BookingAPI.Models.DTOs;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -7,6 +8,7 @@ namespace BookingAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [EnableCors("AngularCORS")]
     public class PackageBookingController : ControllerBase
     {
         private readonly IBookingService<PackageBookDTO, int, CancelDTO> _service;
@@ -25,6 +27,25 @@ namespace BookingAPI.Controllers
                 var booking = await _service.AddBooking(item);
                 if (booking == null)
                     return BadRequest("Unable to add Hotel");
+                return Ok(booking);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+
+        [HttpPost("CheckAvailability")]
+        [ProducesResponseType(typeof(InputDTO), 200)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<InputDTO>> CheckAvai(CheckDTO item)
+        {
+            try
+            {
+                var booking = await _service.CheckAvailable(item);
+                if (booking == null)
+                    return BadRequest("Unable to available Hotel");
                 return Ok(booking);
             }
             catch (Exception ex)

@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EndUserAPI.Migrations
 {
     [DbContext(typeof(UserContext))]
-    [Migration("20230803102611_init")]
+    [Migration("20230807104102_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -26,8 +26,11 @@ namespace EndUserAPI.Migrations
 
             modelBuilder.Entity("EndUserAPI.Models.Passenger", b =>
                 {
-                    b.Property<int>("PassengerId")
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("Address")
                         .HasColumnType("nvarchar(max)");
@@ -47,15 +50,20 @@ namespace EndUserAPI.Migrations
                     b.Property<int>("PassId")
                         .HasColumnType("int");
 
-                    b.HasKey("PassengerId");
+                    b.HasKey("Id");
+
+                    b.HasIndex("PassId");
 
                     b.ToTable("Passengers");
                 });
 
             modelBuilder.Entity("EndUserAPI.Models.TourAgent", b =>
                 {
-                    b.Property<int>("TourAgentId")
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("Address")
                         .HasColumnType("nvarchar(max)");
@@ -78,7 +86,12 @@ namespace EndUserAPI.Migrations
                     b.Property<string>("Picture")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("TourAgentId");
+                    b.Property<int>("TourAgentId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("TourAgentId");
 
                     b.ToTable("TourAgents");
                 });
@@ -111,11 +124,30 @@ namespace EndUserAPI.Migrations
                     b.ToTable("Users");
                 });
 
+            modelBuilder.Entity("EndUserAPI.Models.UserTwoFactor", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("String")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("userId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("UserTwoFactors");
+                });
+
             modelBuilder.Entity("EndUserAPI.Models.Passenger", b =>
                 {
                     b.HasOne("EndUserAPI.Models.User", "User")
                         .WithMany()
-                        .HasForeignKey("PassengerId")
+                        .HasForeignKey("PassId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

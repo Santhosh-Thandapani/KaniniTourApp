@@ -27,10 +27,25 @@ namespace EndUserAPI.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "UserTwoFactors",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    userId = table.Column<int>(type: "int", nullable: false),
+                    String = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_UserTwoFactors", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Passengers",
                 columns: table => new
                 {
-                    PassengerId = table.Column<int>(type: "int", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     PassId = table.Column<int>(type: "int", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Age = table.Column<int>(type: "int", nullable: false),
@@ -40,10 +55,10 @@ namespace EndUserAPI.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Passengers", x => x.PassengerId);
+                    table.PrimaryKey("PK_Passengers", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Passengers_Users_PassengerId",
-                        column: x => x.PassengerId,
+                        name: "FK_Passengers_Users_PassId",
+                        column: x => x.PassId,
                         principalTable: "Users",
                         principalColumn: "UserId",
                         onDelete: ReferentialAction.Cascade);
@@ -53,6 +68,8 @@ namespace EndUserAPI.Migrations
                 name: "TourAgents",
                 columns: table => new
                 {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     TourAgentId = table.Column<int>(type: "int", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     DateOfBirth = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -64,7 +81,7 @@ namespace EndUserAPI.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_TourAgents", x => x.TourAgentId);
+                    table.PrimaryKey("PK_TourAgents", x => x.Id);
                     table.ForeignKey(
                         name: "FK_TourAgents_Users_TourAgentId",
                         column: x => x.TourAgentId,
@@ -72,6 +89,16 @@ namespace EndUserAPI.Migrations
                         principalColumn: "UserId",
                         onDelete: ReferentialAction.Cascade);
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Passengers_PassId",
+                table: "Passengers",
+                column: "PassId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_TourAgents_TourAgentId",
+                table: "TourAgents",
+                column: "TourAgentId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -81,6 +108,9 @@ namespace EndUserAPI.Migrations
 
             migrationBuilder.DropTable(
                 name: "TourAgents");
+
+            migrationBuilder.DropTable(
+                name: "UserTwoFactors");
 
             migrationBuilder.DropTable(
                 name: "Users");

@@ -547,7 +547,8 @@ body {
 
   .searchBox{
     position: relative;
-    top: -400px;
+    top: 00px;
+    border: 2px solid black;
   }
 
   .searchBox .btn-get-started {

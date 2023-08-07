@@ -1,5 +1,6 @@
 ﻿using BookingAPI.Interfaces;
 using BookingAPI.Models.DTOs;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Razor.Hosting;
@@ -8,6 +9,7 @@ namespace BookingAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [EnableCors("AngularCORS")]
     public class HotelBookingController : ControllerBase
     {
         private readonly IBookingService<HotelBookDTO, int, CancelDTO> _service;
@@ -70,6 +72,8 @@ namespace BookingAPI.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+
 
         [HttpPost("GetAll Booking")]
         [ProducesResponseType(typeof(HotelBookDTO), 200)]

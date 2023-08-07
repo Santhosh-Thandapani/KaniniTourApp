@@ -82,8 +82,9 @@ namespace HotelAPI.Services
                 newHotelDTO.Name=hotel.Name;
                 newHotelDTO.HouseNo=hotel.HouseNo;
                 newHotelDTO.Street=hotel.Street;
+                newHotelDTO.Picture=hotel.Picture;
                 newHotelDTO.Landmark=hotel.Landmark;
-                newHotelDTO.CityId=hotel.CityId;
+                newHotelDTO.City=hotel.City;
 
                 newHotelDTO.HotelAmenities = await _hotelAmenity.GetAll(hotel.Id);
 
@@ -98,6 +99,7 @@ namespace HotelAPI.Services
                     newRoomDTO.RoomId = room.RoomId;
                     newRoomDTO.TotalRooms= room.TotalRooms;
                     newRoomDTO.Size=room.Size;
+                    newRoomDTO.RoomPicture = room.RoomPicture;
                     newRoomDTO.BedType=room.BedType;
                     newRoomDTO.Type=room.Type;
                     newRoomDTO.Price=room.Price;

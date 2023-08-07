@@ -49,7 +49,7 @@ namespace TourPackageAPI.Service
                         newAc.ActivityName = activity.ActivityName;
                         newAc.Picture = activity.Picture;
                         newAc.Spot=activity.Spot;
-                        newAc.CityId=activity.CityId;
+                        newAc.City=activity.City;
 
                         var resultAc = await _activityRepo.Add(newAc);
                     }
@@ -93,9 +93,10 @@ namespace TourPackageAPI.Service
                 packageDTO.NightsCount = package.NightsCount;
                 packageDTO.MaxLimit= package.MaxLimit;
                 packageDTO.HotelStayStatus= package.HotelStayStatus;
-                packageDTO.CityId = package.CityId;
-                packageDTO.StateId = package.StateId;
-                packageDTO.CountryId= package.CountryId;
+                packageDTO.Picture=package.Picture;
+                packageDTO.City = package.City;
+                packageDTO.State = package.State;
+                packageDTO.Country= package.Country;
                 packageDTO.Editable = package.Editable;
 
                 List<ItineraryDTO> ItineraryList= new List<ItineraryDTO>();

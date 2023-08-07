@@ -7,8 +7,13 @@ import slide1 from './Assets/slide/slide-1.jpg';
 import slide2 from './Assets/slide/slide-2.jpg'
 import slide3 from './Assets/slide/slide-3.jpg';
 import { Link } from 'react-router-dom';
-import { useState ,useEffect} from 'react';
+import { useState } from 'react';
 import { useNavigate } from "react-router";
+import Login from './Login';
+import UserRegister from './UserRegister';
+import AgentRegister from './AgentRegister';
+import Sample from './Sample';
+import Gallery from './Gallery/Gallery';
 
 
 function LandingPage() {
@@ -32,13 +37,46 @@ function LandingPage() {
     const [showPackageButton, setShowPackageButton] = useState(true);
     const isLoggedIn = sessionStorage.getItem('UserId') && localStorage.getItem('token');
     const navigate = useNavigate();
-    const handleHotelButtonClick = () => {
-      setShowPackageButton(false);
+    
+    
+   // Login Popup 
+    const [loginPopUp, setLoginPopUp] = useState(false);
+    const handleLoginOpen = () => {
+      setLoginPopUp(true);
     };
-  
+    const handleLoginClose = () => {
+      setLoginPopUp(false);
+    };
+
+    //User register popup
+    const [userPopUp, setUserPopUp] = useState(false);
+    const handleUserPopupOpen = () => {
+      setUserPopUp(true);
+    };
+    const handleUserPopupClose = () => {
+      setUserPopUp(false);
+    };
+
+    //Tour Agent Register Popup
+    const [agentPopup, setAgentPopup] = useState(false);
+    const handleAgentPopupOpen = () => {
+      setAgentPopup(true);
+    };
+    const handleAgentPopupClose = () => {
+      setAgentPopup(false);
+    };
+
+
+
+    // Hotel Or Package Button Navigation
     const handlePackageButtonClick = () => {
       setShowPackageButton(true);
     };
+    const handleHotelButtonClick = () => {
+      setShowPackageButton(false);
+    };
+
+
   
     const handleSubmit = () => {
       if (showPackageButton) {
@@ -66,97 +104,8 @@ function LandingPage() {
 
     return (
       <div>
-           <header id="header" className="fixed-top">
-        <div className="container d-flex align-items-center">
-    <a href="/" className="logo me-auto">
-      <img src={logo} alt="Medico" />
-    </a>
-    <nav id="navbar" className="navbar order-last order-lg-0">
-      <ul>
-        <li>
-          <a className="nav-link scrollto" href="#hero">
-            Home
-          </a>
-        </li>
-        <li>
-          <a className="nav-link scrollto" href="#about">
-            About
-          </a>
-        </li>
-        <li>
-          <a className="nav-link scrollto" href="#services">
-            Services
-          </a>
-        </li>
-        <li>
-          <a className="nav-link scrollto" href="#contact">
-            Contact
-          </a>
-        </li>
-        
-            {!isLoggedIn && (
-            <li>
-            <Link className="nav-link scrollto" to={"/doctor"}>
-                Join with us!
-            </Link>
-            </li>
-            
-        )}
-        {!isLoggedIn && (
-            <li>
-            <Link className="nav-link scrollto" to={"/doctor"}>
-                Login
-            </Link>
-            </li>
-            
-        )}
-        {!isLoggedIn && (
-            <li>
-            <Link className="nav-link scrollto" to={"/doctor"}>
-                Register
-            </Link>
-            </li>
-            
-        )}
-
-      </ul>
-      <i className="bi bi-list mobile-nav-toggle"></i>
-    </nav>
-  </div>
-</header>
-
-
-<section id="hero">
-      <Carousel className="custom-carousel">
-        {/* Slide 1 */}
-        <Carousel.Item>
-          <img
-            className="d-block w-100"
-            src={slide1}
-            alt="First slide"
-          />
-        </Carousel.Item>
-
-        {/* Slide 2 */}
-        <Carousel.Item>
-          <img
-            className="d-block w-100"
-            src={slide2}
-            alt="Second slide"
-          />
-        </Carousel.Item>
-
-        {/* Slide 3 */}
-        <Carousel.Item>
-          <img
-            className="d-block w-100"
-            src={slide3}
-            alt="Third slide"
-          />
-        </Carousel.Item>
-      </Carousel>
-    </section>
-
+        <Sample/>
+           
     <div className='searchBox'>
     <div className="row" style={{ background: 'white', padding: '20px' }}>
       <div className="col-md-12" style={{ width: '80%', margin: '0 auto' }}>
@@ -284,8 +233,7 @@ function LandingPage() {
       </div>
     </div>
     </div>
-    
-
+  
     <div className="section-title">
         <h2>Places</h2>
     </div>
@@ -295,7 +243,6 @@ function LandingPage() {
           <div className="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
             <div className="icon-box" data-aos="fade-up" data-aos-delay="100">
               <div className="icon">
-                {/* <i className="fas fa-heartbeat"></i> */}
                 <img className="d-block w-100" src={tour} alt="Second slide" />
                 </div>
               <h4 className="title"><a href=""> Chennai </a></h4>

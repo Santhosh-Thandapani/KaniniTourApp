@@ -11,7 +11,7 @@ using TourPackageAPI.Models.Context;
 namespace TourPackageAPI.Migrations
 {
     [DbContext(typeof(TourContext))]
-    [Migration("20230803044419_init")]
+    [Migration("20230807044425_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -61,8 +61,8 @@ namespace TourPackageAPI.Migrations
                     b.Property<string>("ActivityName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("CityId")
-                        .HasColumnType("int");
+                    b.Property<string>("City")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("ItineraryId")
                         .HasColumnType("int");
@@ -121,11 +121,11 @@ namespace TourPackageAPI.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("CityId")
-                        .HasColumnType("int");
+                    b.Property<string>("City")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("CountryId")
-                        .HasColumnType("int");
+                    b.Property<string>("Country")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("DaysCount")
                         .HasColumnType("int");
@@ -145,8 +145,11 @@ namespace TourPackageAPI.Migrations
                     b.Property<string>("PackageName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("StateId")
-                        .HasColumnType("int");
+                    b.Property<string>("Picture")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("State")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
