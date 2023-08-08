@@ -1,151 +1,68 @@
+import React from 'react';
 import './Sample.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Navbar, Nav, NavDropdown } from "react-bootstrap";
-import { Carousel } from 'react-bootstrap';
 
 function Sample() {
+  const customStyle = {
+    maxWidth: '50px',
+  };
   return (
-    <div className="vendorNavbar">
-      <div className="navBar">
-        <Navbar className="custom-navbar" expand="lg">
-          <Navbar.Brand href="#">Book Your Hotel</Navbar.Brand>
-          <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="ml-auto">
-              <Nav.Link href="#home">Home</Nav.Link>
-              <Nav.Link href="#services">Hotels</Nav.Link>
-              <Nav.Link href="#rooms">Rooms</Nav.Link> 
-            </Nav>
-          </Navbar.Collapse>
-        </Navbar>
-      </div>
-
-
-{/* <header id="header" className="fied-top">
-        <div className="container d-flex align-items-center">
-    <a href="/" className="logo me-auto">
-      <img src={logo} alt="Medico" />
-    </a>
-    <nav id="navbar" className="navbar order-last order-lg-0">
-      <ul>
-        <li>
-          <a className="nav-link scrollto" href="#hero">
-            Home
-          </a>
-        </li>
-        <li>
-          <a className="nav-link scrollto" href="#about">
-            About
-          </a>
-        </li>
-        <li>
-          <a className="nav-link scrollto" href="#services">
-            Services
-          </a>
-        </li>
-        <li>
-          <a className="nav-link scrollto" href="#contact">
-            Contact
-          </a>
-        </li>
-
-        &nbsp;&nbsp;&nbsp;&nbsp;
-        {!isLoggedIn && (
-          <li>
-            <span onClick={handleLoginOpen}>Login</span>
-          </li>
-        )}
-        {loginPopUp && <Login closeLoginModal={handleLoginClose} />}
-
-
-        &nbsp;&nbsp;&nbsp;&nbsp;
-        {!isLoggedIn && (
-          <li>
-            <span onClick={handleUserPopupOpen}>Register</span>
-          </li>
-        )}
-        {userPopUp && <UserRegister closeLoginModal={handleUserPopupClose} />}
-
-
-         &nbsp;&nbsp;&nbsp;&nbsp;
-        {!isLoggedIn && (
-          <li>
-            <span onClick={handleAgentPopupOpen}>Joinwithus</span>
-          </li>
-        )}
-        {agentPopup && <AgentRegister closeLoginModal={handleAgentPopupClose}/> }  
-
-
-            
-
-      </ul>
-      <i className="bi bi-list mobile-nav-toggle"></i>
-    </nav>
-  </div>
-</header> */}
-
-
-        <div className='container-fluid' >
+    <section className="wrapper">
+      <div className="container">
         <div className="row">
-            <div className="col-12">
-                <Carousel>
-
-                    <Carousel.Item>
-                        <img
-                            className="d-block w-100"
-                            src="https://picsum.photos/500/300?img=1"
-                            alt="First slide"
-                        />
-                        <Carousel.Caption>
-                            <h3>First slide label</h3>
-                            <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-                        </Carousel.Caption>
-                    </Carousel.Item>
-
-                    <Carousel.Item>
-                        <img
-                            className="d-block w-100"
-                            src="https://picsum.photos/500/300?img=2"
-                            alt="Second slide"
-                        />
-
-                        <Carousel.Caption>
-                            <h3>Second slide label</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                        </Carousel.Caption>
-                    </Carousel.Item>
-
-                    <Carousel.Item>
-                        <img
-                            className="d-block w-100"
-                            src="https://picsum.photos/500/300?img=3"
-                            alt="Third slide"
-                        />
-                        <Carousel.Caption>
-                            <h3>Third slide label</h3>
-                            <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
-                        </Carousel.Caption>
-                    </Carousel.Item>
-                </Carousel>
+          <div className="col text-center mb-5">
+            <h1 className="display-4 font-weight-bolder">Bootstrap 4 Cards With Background Image</h1>
+            <p className="lead">Lorem ipsum dolor sit amet at enim hac integer volutpat maecenas pulvinar.</p>
+          </div>
+        </div>
+        <div className="row">
+          <div className="col-sm-12 col-md-6 col-lg-4 mb-4">
+            <div className="card text-dark card-has-bg click-col" style={{ backgroundImage: "url('https://source.unsplash.com/600x900/?tech,street')" }}>
+              <img className="card-img d-none" src="https://source.unsplash.com/600x900/?tech,street" alt="Creative Manner Design Lorem Ipsum Sit Amet Consectetur dipisi?" />
+              <div className="card-img-overlay d-flex flex-column">
+                <div className="card-body">
+                  <small className="card-meta mb-2">Thought Leadership</small>
+                  <h4 className="card-title mt-0 "><a className="text-dark" href="https://creativemanner.com">Web Development Lorem Ipsum Sit Amet Consectetur dipisi?</a></h4>
+                  <small><i className="far fa-clock"></i> October 15, 2020</small>
+                </div>
+                <div className="card-footer">
+                  <div className="media">
+                    <img className="mr-3 rounded-circle" src="https://assets.codepen.io/460692/internal/avatars/users/default.png?format=auto&version=1688931977&width=80&height=80" alt="Generic placeholder image" style={customStyle} />
+                    <div className="media-body">
+                      <h6 className="my-0 text-dark d-block">Oz Coruhlu</h6>
+                      <small>Director of UI/UX</small>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-        </div>
-        </div>
+          </div>
 
-    </div>
+          <div className="col-sm-12 col-md-6 col-lg-4 mb-4">
+            <div className="card text-dark card-has-bg click-col" style={{ backgroundImage: "url('https://source.unsplash.com/600x900/?computer,design')" }}>
+              <img className="card-img d-none" src="https://source.unsplash.com/600x900/?computer,design" alt="Creative Manner Design Lorem Ipsum Sit Amet Consectetur dipisi?" />
+              <div className="card-img-overlay d-flex flex-column">
+                <div className="card-body">
+                  <small className="card-meta mb-2">Thought Leadership</small>
+                  <h4 className="card-title mt-0 "><a className="text-dark" href="https://creativemanner.com">Creative Manner Design Lorem Ipsum Sit Amet Consectetur dipisi?</a></h4>
+                  <small><i className="far fa-clock"></i> October 15, 2020</small>
+                </div>
+                <div className="card-footer">
+                  <div className="media">
+                    <img className="mr-3 rounded-circle" src="https://assets.codepen.io/460692/internal/avatars/users/default.png?format=auto&version=1688931977&width=80&height=80" alt="Generic placeholder image" style={customStyle} />
+                    <div className="media-body">
+                      <h6 className="my-0 text-dark d-block">Oz Coruhlu</h6>
+                      <small>Director of UI/UX</small>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
   );
 }
 
 export default Sample;
-
-
-
-
-
-
-
-
-
-
-
-
-

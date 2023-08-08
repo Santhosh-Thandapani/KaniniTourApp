@@ -10,6 +10,7 @@ namespace TourPackageAPI.Models
         public int DaysCount { get; set; }
         public int NightsCount { get; set; }
         public int MaxLimit { get; set; }
+        public float Price { get; set; }
         public string? Picture { get; set; }
         public string? City { get; set; }
         public string? State { get; set; }

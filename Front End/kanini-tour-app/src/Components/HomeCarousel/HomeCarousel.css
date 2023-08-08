@@ -1,0 +1,15 @@
+.carousel {
+    max-height: 400px; /* Adjust the height as needed */
+  }
+  
+  /* Center the Carousel items within the container */
+  .carousel-inner {
+    display: flex;
+    align-items: center;
+  }
+  
+  /* Adjust the size of the Carousel images */
+  .carousel-item img {
+    max-height: 300px; /* Adjust the height of the images as needed */
+    object-fit: cover; /* Keep the aspect ratio and cover the available space */
+  }

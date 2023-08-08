@@ -1,19 +1,11 @@
 import React from 'react';
 import './LandingPage.css';
-import logo from './Assets/logo.png';
 import tour from './Assets/tour.jpg';
-import { Button, Carousel } from 'react-bootstrap';
-import slide1 from './Assets/slide/slide-1.jpg';
-import slide2 from './Assets/slide/slide-2.jpg'
-import slide3 from './Assets/slide/slide-3.jpg';
-import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import { useNavigate } from "react-router";
-import Login from './Login';
-import UserRegister from './UserRegister';
-import AgentRegister from './AgentRegister';
-import Sample from './Sample';
 import Gallery from './Gallery/Gallery';
+import NavbarHome from './NavbarHome/NavbarHome';
+import HomeCarousel from './HomeCarousel/HomeCarousel';
 
 
 function LandingPage() {
@@ -35,39 +27,9 @@ function LandingPage() {
         "children":0});
 
     const [showPackageButton, setShowPackageButton] = useState(true);
-    const isLoggedIn = sessionStorage.getItem('UserId') && localStorage.getItem('token');
     const navigate = useNavigate();
     
     
-   // Login Popup 
-    const [loginPopUp, setLoginPopUp] = useState(false);
-    const handleLoginOpen = () => {
-      setLoginPopUp(true);
-    };
-    const handleLoginClose = () => {
-      setLoginPopUp(false);
-    };
-
-    //User register popup
-    const [userPopUp, setUserPopUp] = useState(false);
-    const handleUserPopupOpen = () => {
-      setUserPopUp(true);
-    };
-    const handleUserPopupClose = () => {
-      setUserPopUp(false);
-    };
-
-    //Tour Agent Register Popup
-    const [agentPopup, setAgentPopup] = useState(false);
-    const handleAgentPopupOpen = () => {
-      setAgentPopup(true);
-    };
-    const handleAgentPopupClose = () => {
-      setAgentPopup(false);
-    };
-
-
-
     // Hotel Or Package Button Navigation
     const handlePackageButtonClick = () => {
       setShowPackageButton(true);
@@ -76,8 +38,6 @@ function LandingPage() {
       setShowPackageButton(false);
     };
 
-
-  
     const handleSubmit = () => {
       if (showPackageButton) {
         console.log('Package data:', packageData);
@@ -104,7 +64,8 @@ function LandingPage() {
 
     return (
       <div>
-        <Sample/>
+       <NavbarHome/>
+       <HomeCarousel/>
            
     <div className='searchBox'>
     <div className="row" style={{ background: 'white', padding: '20px' }}>
@@ -233,122 +194,63 @@ function LandingPage() {
       </div>
     </div>
     </div>
-  
-    <div className="section-title">
-        <h2>Places</h2>
-    </div>
-    <section id="featured-services" className="featured-services">
+
+
+    <section id="services" className="pLaces">
       <div className="container" data-aos="fade-up">
-        <div className="row">
-          <div className="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
-            <div className="icon-box" data-aos="fade-up" data-aos-delay="100">
-              <div className="icon">
-                <img className="d-block w-100" src={tour} alt="Second slide" />
-                </div>
-              <h4 className="title"><a href=""> Chennai </a></h4>
-              <p className="description"> Improve operational efficiency and patient satisfaction</p>
-            </div>
-          </div>
-
-          <div className="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
-            <div className="icon-box" data-aos="fade-up" data-aos-delay="200">
-              <div className="icon">
-              <img className="d-block w-100" src={tour} alt="Second slide" />
+      <div className="section-title">
+            <h2>Places</h2>
+      </div>
+      <section id="featured-services" className="featured-services">
+        <div className="container" data-aos="fade-up">
+          <div className="row">
+            <div className="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
+              <div className="icon-box" data-aos="fade-up" data-aos-delay="100">
+                <div className="icon">
+                  <img className="d-block w-100" src={tour} alt="Second slide" />
+                  </div>
+                <h4 className="title"><a href=""> Chennai </a></h4>
+                <p className="description"> Improve operational efficiency and patient satisfaction</p>
               </div>
-              <h4 className="title"><a href=""> Chennai </a></h4>
-              <p className="description"> Improve operational efficiency and patient satisfaction</p>
             </div>
-          </div>
 
-          <div className="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
-            <div className="icon-box" data-aos="fade-up" data-aos-delay="300">
-              <div className="icon">
+            <div className="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
+              <div className="icon-box" data-aos="fade-up" data-aos-delay="200">
+                <div className="icon">
                 <img className="d-block w-100" src={tour} alt="Second slide" />
                 </div>
                 <h4 className="title"><a href=""> Chennai </a></h4>
-              <p className="description"> Improve operational efficiency and patient satisfaction</p>
-            </div>
-          </div>
-
-          <div className="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
-            <div className="icon-box" data-aos="fade-up" data-aos-delay="400">
-              <div className="icon">
-              <img className="d-block w-100" src={tour} alt="Second slide" />
+                <p className="description"> Improve operational efficiency and patient satisfaction</p>
               </div>
-              <h4 className="title"><a href=""> Chennai </a></h4>
-              <p className="description"> Improve operational efficiency and patient satisfaction</p>
+            </div>
+
+            <div className="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
+              <div className="icon-box" data-aos="fade-up" data-aos-delay="300">
+                <div className="icon">
+                  <img className="d-block w-100" src={tour} alt="Second slide" />
+                  </div>
+                  <h4 className="title"><a href=""> Chennai </a></h4>
+                <p className="description"> Improve operational efficiency and patient satisfaction</p>
+              </div>
+            </div>
+
+            <div className="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
+              <div className="icon-box" data-aos="fade-up" data-aos-delay="400">
+                <div className="icon">
+                <img className="d-block w-100" src={tour} alt="Second slide" />
+                </div>
+                <h4 className="title"><a href=""> Chennai </a></h4>
+                <p className="description"> Improve operational efficiency and patient satisfaction</p>
+              </div>
             </div>
           </div>
-          <br/>   <br/>   <br/>   <br/> 
-          <div className='more'>
-          <a href="#about" className="btn-get-started scrollto">
-              Read More
-            </a>
-            </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </div>
+   </section>
 
     
-    <div className="section-title">
-        <h2>Top PAckages</h2>
-    </div>
-    <div className='kkk'>
-    <section id="featured-services" className="featured-services">
-      <div className="container" data-aos="fade-up">
-        <div className="row">
-          <div className="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
-            <div className="icon-box" data-aos="fade-up" data-aos-delay="100">
-              <div className="icon">
-                {/* <i className="fas fa-heartbeat"></i> */}
-                <img className="d-block w-100" src={tour} alt="Second slide" />
-                </div>
-              <h4 className="title"><a href=""> Chennai </a></h4>
-              <p className="description"> Improve operational efficiency and patient satisfaction</p>
-            </div>
-          </div>
-
-          <div className="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
-            <div className="icon-box" data-aos="fade-up" data-aos-delay="200">
-              <div className="icon">
-              <img className="d-block w-100" src={tour} alt="Second slide" />
-              </div>
-              <h4 className="title"><a href=""> Chennai </a></h4>
-              <p className="description"> Improve operational efficiency and patient satisfaction</p>
-            </div>
-          </div>
-
-          <div className="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
-            <div className="icon-box" data-aos="fade-up" data-aos-delay="300">
-              <div className="icon">
-                <img className="d-block w-100" src={tour} alt="Second slide" />
-                </div>
-                <h4 className="title"><a href=""> Chennai </a></h4>
-              <p className="description"> Improve operational efficiency and patient satisfaction</p>
-            </div>
-          </div>
-
-          <div className="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
-            <div className="icon-box" data-aos="fade-up" data-aos-delay="400">
-              <div className="icon">
-              <img className="d-block w-100" src={tour} alt="Second slide" />
-              </div>
-              <h4 className="title"><a href=""> Chennai </a></h4>
-              <p className="description"> Improve operational efficiency and patient satisfaction</p>
-            </div>
-          </div>
-          <br/>   
-          <div className='more'>
-          <a href="#about" className="btn-get-started scrollto">
-              Read More
-            </a>
-            </div>
-        </div>
-      </div>
-    </section>
-    </div>
-
-
+    <Gallery/>
     
     {/* service */}
     <section id="services" className="services">

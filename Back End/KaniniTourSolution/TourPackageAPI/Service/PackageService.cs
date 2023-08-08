@@ -94,6 +94,7 @@ namespace TourPackageAPI.Service
                 packageDTO.MaxLimit= package.MaxLimit;
                 packageDTO.HotelStayStatus= package.HotelStayStatus;
                 packageDTO.Picture=package.Picture;
+                packageDTO.Price = package.Price;
                 packageDTO.City = package.City;
                 packageDTO.State = package.State;
                 packageDTO.Country= package.Country;
